@@ -29,10 +29,9 @@ export async function createReviewAction(formData: FormData) {
         }),
       },
     );
-    console.log(response.status);
 
-    // 성공적으로 댓글 요청시 -> 리뷰 데이터를 최신화 (또는 book Page 자체를 다시 렌더링한다던가)
-    revalidatePath(`/book/${bookId}`);
+    // 5. 태그 값을 기준으로 재검증
+    revalidatePath(`review-${bookId}`);
   } catch (error) {
     console.error(error);
     return;

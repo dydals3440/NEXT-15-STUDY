@@ -2,6 +2,7 @@ import './globals.css';
 import Link from 'next/link';
 import style from './layout.module.css';
 import { BookData } from '@/types';
+import { ReactNode } from 'react';
 
 async function Footer() {
   // request memoization이 자동으로 동작함.
@@ -34,8 +35,10 @@ async function Footer() {
 // 아무런 캐시 옵션이 설정되어 있지 않음 -> no-store 그래서, 다이나믹이 됨.
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
+  modal: ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -47,6 +50,9 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
         </div>
+        {/* 모달이 추가되는 요소 */}
+        {modal}
+        <div id="modal-root" />
       </body>
     </html>
   );

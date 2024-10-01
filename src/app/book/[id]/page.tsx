@@ -47,7 +47,7 @@ async function BookDetail({ bookId }: { bookId: string }) {
           src={coverImgUrl}
           width={240}
           height={300}
-          alt={`도서 ${title}의 표시 이미지`}
+          alt={`도서 ${title}의 표시 이미지입니다.`}
         />
       </div>
       <div className={style.title}>{title}</div>

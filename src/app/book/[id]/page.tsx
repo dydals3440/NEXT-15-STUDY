@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { createReviewAction } from '@/actions/create-review.action';
 import ReviewItem from '@/components/review-item';
 import ReviewEditor from '@/components/review-editor';
+import Image from 'next/image';
 
 // 기본 값 true
 // 1,2,3 이외에 404에러처리 false시.
@@ -42,7 +43,12 @@ async function BookDetail({ bookId }: { bookId: string }) {
         className={style.cover_img_container}
         style={{ backgroundImage: `url('${coverImgUrl}')` }}
       >
-        <img src={coverImgUrl} />
+        <Image
+          src={coverImgUrl}
+          width={240}
+          height={300}
+          alt={`도서 ${title}의 표시 이미지`}
+        />
       </div>
       <div className={style.title}>{title}</div>
       <div className={style.subTitle}>{subTitle}</div>

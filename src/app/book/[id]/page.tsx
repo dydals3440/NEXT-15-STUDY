@@ -13,8 +13,22 @@ import { Metadata } from 'next';
 
 // page 컴포넌트 위에
 // generateStaticParams 정적인 파라미터를 생성하는 함수이다.
-export function generateStaticParams() {
-  return [{ id: '1' }, { id: '2' }, { id: '3' }];
+export async function generateStaticParams() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`,
+  );
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+
+  const books: BookData[] = await response.json();
+
+  return books.map((book) => ({
+    id: book.id.toString(),
+  }));
+
+  // return [{ id: '1' }, { id: '2' }, { id: '3' }];
 }
 
 async function BookDetail({ bookId }: { bookId: string }) {
